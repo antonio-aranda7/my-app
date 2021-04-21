@@ -18,3 +18,42 @@
   <p>Ingrese apellido<input type="text" [(ngModel)]="apellido"></p>  
   <p>Nombre completo:{{nombre}},{{apellido}}</p>
 </div>
+
+<div>
+  <h1>Administración de artículos</h1>
+  
+  <!-- utilizado la directiva *ngIf para no mostrar la tabla HTML en caso que el vector 'articulos' se encuentre vacío: -->
+    <table border="1" *ngIf="hayRegistros(); else sinarticulos">
+      <!-- eneramos una tabla HTML que muestre los datos del modelo y lo recorremos mediante la directiva *ngFor: 
+      Llamamos al método 'hayRegistros()' que retorna true o false dependiendo si el vector tiene o no componentes:-->    
+      <tr>
+        <td>Codigo</td><td>Descripcion</td><td>Precio</td><td>Borrar</td><td>Seleccionar</td>
+      </tr>
+      <tr *ngFor="let art of articulos">
+        <td>{{art.codigo}}</td>
+        <td>{{art.descripcion}}</td>
+        <td>{{art.precio}}</td>
+        <td><button (click)="borrar(art)">Borrar?</button></td>
+        <td><button (click)="seleccionar(art)">Seleccionar</button></td>        
+      </tr>
+    </table>
+    <!-- Disponemos en cada fila dos botones y definimos sus respectivos eventos 'click' para que al ser presionados llamen a métodos del modelo 
+    para borrar o seleccionar el artículo respectivo. Los métodos envían como parámetro el artículo para saber cual borrar o seleccionar. -->
+    <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
+    <!-- En la vista disponemos una serie de 'input' que nos permiten ingresar el código, descripción y precio de un artículo: -->
+    <div>
+      <p>
+        Codigo:<input type="number" [(ngModel)]="art.codigo" />
+      </p>
+      <p>
+        descripcion:<input type="text" [(ngModel)]="art.descripcion" />
+      </p>
+      <p>
+        precio:<input type="number" [(ngModel)]="art.precio" />
+      </p>            
+      <p><button (click)="agregar()">Agregar</button>
+      <button (click)="modificar()">Modificar</button></p>
+    </div>
+    <!-- Podemos comprobar que los controles HTML tienen la directiva 'ngModel' bidireccional, es decir que cuando el operador carga un dato en 
+    el primer 'input' se actualiza automáticamente en el modelo el dato cargado en 'art.codigo': -->
+</div>
