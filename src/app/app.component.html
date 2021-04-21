@@ -1,0 +1,14 @@
+<p>name="{{title}}"</p>
+<p>
+  Empieza a editar para ver que apsa :)
+</p>
+<p *ngIf="numeroClics == 0; else deLoContrario"> No haz dado click</p>
+<ng-template #deLoContrario> <p>Haz dado {{ numeroClicks }} clics</p> </ng-template> 
+
+<tr *ngFor="let item of materias"> 
+  <td>{{ item }}</td>
+</tr>
+
+<!-- <ul *ngFor="let item of materias"> 
+  <tli>{{ item }}</td>
+</ul> -->
