@@ -10,6 +10,9 @@ export class AppComponent {
   numeroClics= 10;
   
   materias = ["Desarrollo web II", "Framework Frontend", "Redes"]
+
+  nombre='';
+  apellido='';
 }
 /*
 export 
